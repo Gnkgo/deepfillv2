@@ -33,7 +33,7 @@ def forward(size, root, model):
     mask = mask.astype(np.float32)
     mask = transforms.ToTensor()(mask)
     mask = mask.reshape([1, 1, size, size])
-    maskimg = torch.cat((maskimg, mask), 1).cuda()
+    maskimg = torch.cat((maskimg, mask), 1)#cuda()
     # get the output
     output = model(maskimg)
     # transfer to image

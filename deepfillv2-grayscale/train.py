@@ -10,9 +10,9 @@ if __name__ == "__main__":
     # General parameters
     parser.add_argument('--pre_train', type = bool, default = True, help = 'the type of GAN for training')
     parser.add_argument('--save_path', type = str, default = './models', help = 'saving path that is a folder')
-    parser.add_argument('--sample_path', type = str, default = './samples', help = 'training samples path that is a folder')
-    parser.add_argument('--multi_gpu', type = bool, default = True, help = 'nn.Parallel needs or not')
-    parser.add_argument('--gpu_ids', type = str, default = "0, 1", help = 'gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
+    parser.add_argument('--sample_path', type = str, default = './inpainting_images', help = 'training samples path that is a folder')
+    parser.add_argument('--multi_gpu', type = bool, default = False, help = 'nn.Parallel needs or not')
+    parser.add_argument('--gpu_ids', type = str, default = "-1", help = 'gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
     parser.add_argument('--cudnn_benchmark', type = bool, default = True, help = 'True for unchanged input data type')
     parser.add_argument('--checkpoint_interval', type = int, default = 100, help = 'interval between model checkpoints')
     parser.add_argument('--finetune_path', type = str, default = "", help = 'the load name of models')
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     parser.add_argument('--init_type', type = str, default = 'normal', help = 'the initialization type')
     parser.add_argument('--init_gain', type = float, default = 0.02, help = 'the initialization gain')
     # Dataset parameters
-    parser.add_argument('--baseroot', type = str, default = "C:\\Users\\yzzha\\Desktop\\dataset\\1", \
+    parser.add_argument('--baseroot', type = str, default = "./inpainting_images", \
         help = 'the base training folder for inpainting network')
     parser.add_argument('--imgsize', type = int, default = 256, help = 'size of image')
     # mask parameters

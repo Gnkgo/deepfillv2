@@ -49,8 +49,8 @@ if __name__ == "__main__":
     for batch_idx, (img, mask, imgname) in enumerate(dataloader):
 
         # Load mask (shape: [B, 1, H, W]), masked_img (shape: [B, 3, H, W]), img (shape: [B, 3, H, W]) and put it to cuda
-        img = img.cuda()
-        mask = mask.cuda()
+        img = img#cuda()
+        mask = mask#cuda()
 
         # Generator output
         masked_img = img * (1 - mask)

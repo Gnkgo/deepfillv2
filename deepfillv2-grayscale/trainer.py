@@ -22,7 +22,7 @@ def Trainer(opt):
     cudnn.benchmark = opt.cudnn_benchmark
 
     # Handle multiple GPUs
-    gpu_num = torch.cuda.device_count()
+    gpu_num = torch#cuda.device_count()
     print("There are %d GPUs used" % gpu_num)
     opt.batch_size *= gpu_num
     opt.num_workers *= gpu_num
@@ -39,9 +39,9 @@ def Trainer(opt):
     # To device
     if opt.multi_gpu == True:
         generator = nn.DataParallel(generator)
-        generator = generator.cuda()
+        generator = generator#cuda()
     else:
-        generator = generator.cuda()
+        generator = generator#cuda()
 
     # Loss functions
     L1Loss = nn.L1Loss()
@@ -93,8 +93,8 @@ def Trainer(opt):
         for batch_idx, (grayscale, mask) in enumerate(dataloader):
 
             # Load and put to cuda
-            grayscale = grayscale.cuda()                                    # out: [B, 1, 256, 256]
-            mask = mask.cuda()                                              # out: [B, 1, 256, 256]
+            grayscale = grayscale#cuda()                                    # out: [B, 1, 256, 256]
+            mask = mask#cuda()                                              # out: [B, 1, 256, 256]
 
             # forward propagation
             optimizer_g.zero_grad()
@@ -135,7 +135,7 @@ def Trainer_GAN(opt):
     cudnn.benchmark = opt.cudnn_benchmark
 
     # Handle multiple GPUs
-    gpu_num = torch.cuda.device_count()
+    gpu_num = torch#cuda.device_count()
     print("There are %d GPUs used" % gpu_num)
     opt.batch_size *= gpu_num
     opt.num_workers *= gpu_num
@@ -156,13 +156,13 @@ def Trainer_GAN(opt):
         generator = nn.DataParallel(generator)
         discriminator = nn.DataParallel(discriminator)
         perceptualnet = nn.DataParallel(perceptualnet)
-        generator = generator.cuda()
-        discriminator = discriminator.cuda()
-        perceptualnet = perceptualnet.cuda()
+        generator = generator#cuda()
+        discriminator = discriminator#cuda()
+        perceptualnet = perceptualnet#cuda()
     else:
-        generator = generator.cuda()
-        discriminator = discriminator.cuda()
-        perceptualnet = perceptualnet.cuda()
+        generator = generator#cuda()
+        discriminator = discriminator#cuda()
+        perceptualnet = perceptualnet#cuda()
 
     # Loss functions
     L1Loss = nn.L1Loss()
@@ -212,15 +212,15 @@ def Trainer_GAN(opt):
     prev_time = time.time()
 
     # Tensor type
-    Tensor = torch.cuda.FloatTensor
+    Tensor = torch#cuda.FloatTensor
 
     # Training loop
     for epoch in range(opt.epochs):
         for batch_idx, (grayscale, mask) in enumerate(dataloader):
 
             # Load and put to cuda
-            grayscale = grayscale.cuda()                                    # out: [B, 1, 256, 256]
-            mask = mask.cuda()                                              # out: [B, 1, 256, 256]
+            grayscale = grayscale#cuda()                                    # out: [B, 1, 256, 256]
+            mask = mask#cuda()                                              # out: [B, 1, 256, 256]
 
             # LSGAN vectors
             valid = Tensor(np.ones((grayscale.shape[0], 1, 8, 8)))

@@ -1,12 +1,12 @@
 python train.py \
---baseroot '/mnt/lustre/zhaoyuzhi/dataset/ILSVRC2012_train_256' \
+--baseroot './inpainting_images' \
 --save_path './models' \
 --sample_path './samples' \
 --gan_type 'WGAN' \
 --multi_gpu False \
 --cudnn_benchmark True \
 --checkpoint_interval 1 \
---multi_gpu True \
+--multi_gpu False \
 --load_name '' \
 --epochs 41 \
 --batch_size 4 \
@@ -34,3 +34,4 @@ python train.py \
 --max_angle 4 \
 --max_len 40 \
 --max_width 10 \
+

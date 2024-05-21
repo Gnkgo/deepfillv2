@@ -52,7 +52,7 @@ if __name__ == "__main__":
     #                   Test
     # ----------------------------------------
     # Initialize
-    generator = utils.create_generator(opt).cuda()
+    generator = utils.create_generator(opt)#cuda()
     test_dataset = dataset.ValidationSet_with_Known_Mask(opt)
     test_loader = torch.utils.data.DataLoader(test_dataset, batch_size = opt.test_batch_size, shuffle = False, num_workers = opt.num_workers, pin_memory = True)
     utils.check_path(opt.savepath)
@@ -69,8 +69,8 @@ if __name__ == "__main__":
         '''
 
         # To device
-        grayscale = grayscale.cuda()                                        # out: [B, 1, 256, 256]
-        mask = mask.cuda()                                                  # out: [B, 1, 256, 256]
+        grayscale = grayscale#cuda()                                        # out: [B, 1, 256, 256]
+        mask = mask#cuda()                                                  # out: [B, 1, 256, 256]
         print(i, imgname[0])
 
         # Forward propagation
