@@ -39,9 +39,9 @@ def Trainer(opt):
     # To device
     if opt.multi_gpu == True:
         generator = nn.DataParallel(generator)
-        generator = generator#cuda()
+        generator = generator.cuda()
     else:
-        generator = generator#cuda()
+        generator = generator.cuda()
 
     # Loss functions
     L1Loss = nn.L1Loss()
@@ -93,8 +93,8 @@ def Trainer(opt):
         for batch_idx, (grayscale, mask) in enumerate(dataloader):
 
             # Load and put to cuda
-            grayscale = grayscale#cuda()                                    # out: [B, 1, 256, 256]
-            mask = mask#cuda()                                              # out: [B, 1, 256, 256]
+            grayscale = grayscale.cuda()                                    # out: [B, 1, 256, 256]
+            mask = mask.cuda()                                              # out: [B, 1, 256, 256]
 
             # forward propagation
             optimizer_g.zero_grad()
@@ -156,13 +156,13 @@ def Trainer_GAN(opt):
         generator = nn.DataParallel(generator)
         discriminator = nn.DataParallel(discriminator)
         perceptualnet = nn.DataParallel(perceptualnet)
-        generator = generator#cuda()
-        discriminator = discriminator#cuda()
-        perceptualnet = perceptualnet#cuda()
+        generator = generator.cuda()
+        discriminator = discriminator.cuda()
+        perceptualnet = perceptualnet.cuda()
     else:
-        generator = generator#cuda()
-        discriminator = discriminator#cuda()
-        perceptualnet = perceptualnet#cuda()
+        generator = generator.cuda()
+        discriminator = discriminator.cuda()
+        perceptualnet = perceptualnet.cuda()
 
     # Loss functions
     L1Loss = nn.L1Loss()
@@ -219,8 +219,8 @@ def Trainer_GAN(opt):
         for batch_idx, (grayscale, mask) in enumerate(dataloader):
 
             # Load and put to cuda
-            grayscale = grayscale#cuda()                                    # out: [B, 1, 256, 256]
-            mask = mask#cuda()                                              # out: [B, 1, 256, 256]
+            grayscale = grayscale.cuda()                                    # out: [B, 1, 256, 256]
+            mask = mask.cuda()                                              # out: [B, 1, 256, 256]
 
             # LSGAN vectors
             valid = Tensor(np.ones((grayscale.shape[0], 1, 8, 8)))

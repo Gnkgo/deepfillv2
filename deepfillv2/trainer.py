@@ -38,13 +38,13 @@ def WGAN_trainer(opt):
         generator = nn.DataParallel(generator)
         discriminator = nn.DataParallel(discriminator)
         perceptualnet = nn.DataParallel(perceptualnet)
-        generator = generator#cuda()
-        discriminator = discriminator#cuda()
-        perceptualnet = perceptualnet#cuda()
+        generator = generator.cuda()
+        discriminator = discriminator.cuda()
+        perceptualnet = perceptualnet.cuda()
     else:
-        generator = generator#cuda()
-        discriminator = discriminator#cuda()
-        perceptualnet = perceptualnet#cuda()
+        generator = generator.cuda()
+        discriminator = discriminator.cuda()
+        perceptualnet = perceptualnet.cuda()
 
     # Loss functions
     L1Loss = nn.L1Loss()
@@ -97,8 +97,8 @@ def WGAN_trainer(opt):
         for batch_idx, (img, mask) in enumerate(dataloader):
 
             # Load mask (shape: [B, 1, H, W]), masked_img (shape: [B, 3, H, W]), img (shape: [B, 3, H, W]) and put it to cuda
-            img = img#cuda()
-            mask = mask#cuda()
+            img = img.cuda()
+            mask = mask.cuda()
 
             ### Train Discriminator
             optimizer_d.zero_grad()
@@ -195,13 +195,13 @@ def LSGAN_trainer(opt):
         generator = nn.DataParallel(generator)
         discriminator = nn.DataParallel(discriminator)
         perceptualnet = nn.DataParallel(perceptualnet)
-        generator = generator#cuda()
-        discriminator = discriminator#cuda()
-        perceptualnet = perceptualnet#cuda()
+        generator = generator.cuda()
+        discriminator = discriminator.cuda()
+        perceptualnet = perceptualnet.cuda()
     else:
-        generator = generator#cuda()
-        discriminator = discriminator#cuda()
-        perceptualnet = perceptualnet#cuda()
+        generator = generator.cuda()
+        discriminator = discriminator.cuda()
+        perceptualnet = perceptualnet.cuda()
 
     # Loss functions
     L1Loss = nn.L1Loss()
@@ -258,8 +258,8 @@ def LSGAN_trainer(opt):
         for batch_idx, (img, mask) in enumerate(dataloader):
 
             # Load mask (shape: [B, 1, H, W]), masked_img (shape: [B, 3, H, W]), img (shape: [B, 3, H, W]) and put it to cuda
-            img = img#cuda()
-            mask = mask#cuda()
+            img = img.cuda()
+            mask = mask.cuda()
 
             # LSGAN vectors
             valid = Tensor(np.ones((img.shape[0], 1, 8, 8)))
